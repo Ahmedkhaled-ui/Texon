@@ -12,6 +12,9 @@ namespace Texon.Persistence.Repository
         public async Task AddAsync(TEntity entity)
       => await context.AddAsync(entity);
 
+        public Task<int> CountAsync(IBaseSpecfications<TEntity> specfications)
+       => context.Set<TEntity>().Specfications(specfications).CountAsync();
+
         public async Task<IEnumerable<TEntity>> GetAllAsync()
      => await context.Set<TEntity>().ToListAsync();
 

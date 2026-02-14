@@ -32,5 +32,20 @@ namespace Texon.Service.specfications
 
         protected void AddInclude(Expression<Func<TEntity, object>> includeExpression)
      => Includes.Add(includeExpression);
+
+
+        protected void AddOrderBy(Expression<Func<TEntity, object>> orderByExpression)
+            => ApplyOrderBy = orderByExpression;
+
+        protected void AddOrderByDes(Expression<Func<TEntity, object>> orderByDescExpression)
+            => ApplyOrderByDescending = orderByDescExpression;
+
+        protected void ApplyPagintion (int pageSize , int pageIndex)
+        {
+            IsPagineted = true;
+
+            Skip = pageSize * (pageIndex - 1);
+            Take = pageSize;
+        }
     }
 }

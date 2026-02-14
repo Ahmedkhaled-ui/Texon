@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using E_Commerce.Shared;
 using Texon.Domin.Contracts;
 using Texon.Domin.Entities.Products;
+using Texon.Service.Abstraction.Common;
 using Texon.Service.Abstraction.IService;
 using Texon.Service.specfications;
 using Texon.Shared.ProductDto;
@@ -61,25 +63,30 @@ namespace Texon.Service.Service
             return await unitofWork.SaveChangesAsync() > 0;
         }
 
-        public async Task<IEnumerable<ProductResponse>> GetAllProductsAsync(string lang , ProductQuary productQuary)
+        public async Task<PagenatedResult<ProductResponse>> GetAllProductsAsync(string lang , ProductQuary productQuary)
         {
             var spec = new ProductWithCategory(productQuary);
                 
                 var products = await unitofWork.GetRepository<Product , int>().GetAllAsync(spec);
             if (!products.Any())
-                return [];
-            return mapper.Map<IEnumerable<ProductResponse>>(products , opt => opt.Items["lang"] = lang);
+                return null;
 
+
+            var totalCount = await unitofWork.GetRepository<Product , int>().CountAsync(new ProductCountSpecfication(productQuary));
+
+            var result = mapper.Map<IEnumerable<ProductResponse>>(products , opt => opt.Items["lang"] = lang);
+
+            return new(productQuary.pageIndex, result.Count(), totalCount, result);
         }
 
 
 
-        public async Task<ProductResponse> GetProductByIdAsync(int id , string lang , CancellationToken cancellationToken)
+        public async Task<Result<ProductResponse>> GetProductByIdAsync(int id , string lang , CancellationToken cancellationToken)
         {
             var spec = new ProductWithCategory(id);
             var productId = await unitofWork.GetRepository<Product , int>().GetAsync(spec);
             if (productId is null)
-                return null;
+                return Error.NotFound("","");
 
             return mapper.Map<ProductResponse>(productId, opt => opt.Items["lang"] = lang);
 

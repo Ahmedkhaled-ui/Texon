@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Texon.Persistence.Context;
 
@@ -11,9 +12,11 @@ using Texon.Persistence.Context;
 namespace Texon.Persistence.Migrations
 {
     [DbContext(typeof(TexonContext))]
-    partial class TexonContextModelSnapshot : ModelSnapshot
+    [Migration("20260211082946_editAuth")]
+    partial class editAuth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

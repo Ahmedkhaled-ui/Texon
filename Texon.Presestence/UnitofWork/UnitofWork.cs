@@ -5,7 +5,7 @@ using Texon.Persistence.Repository;
 
 namespace Texon.Persistence.UnitofWork
 {
-    public class UnitofWork : IUnitofWork
+    public class    UnitofWork : IUnitofWork
     {
         private readonly Dictionary<Type, object> repositories = [];
         private readonly TexonContext context;

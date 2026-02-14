@@ -23,18 +23,22 @@ namespace Texon
 
             builder.Services.AddScoped<IproductService, ProductService>();
             builder.Services.AddScoped<IcategoryService, categoryService>();
+            builder.Services.AddScoped<IBasketService, BasketService>();
 
-            builder.Services.AddScoped<IAttachmentService, AttachmentService>();
 
 
+
+            #region AutoMapper
             builder.Services.AddAutoMapper(cfg =>
-            {
-                cfg.AddProfile(new ProductsProfile(builder.Configuration));
-                cfg.AddProfile(new CategoryProfile());
+           {
+               cfg.AddProfile(new ProductsProfile(builder.Configuration));
+               cfg.AddProfile(new CategoryProfile());
+               cfg.AddProfile(new BaketProfile());
 
-            });
+           }); 
+            #endregion
 
-           ;
+            ;
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

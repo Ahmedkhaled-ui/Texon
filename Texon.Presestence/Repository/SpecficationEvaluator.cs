@@ -19,8 +19,7 @@ namespace Texon.Persistence.Repository
 
             if(spec.ApplyOrderBy != null)
                 query = query.OrderBy(spec.ApplyOrderBy);
-
-            if(spec.ApplyOrderByDescending != null)
+              else if (spec.ApplyOrderByDescending != null)
                 query = query.OrderByDescending(spec.ApplyOrderByDescending);
             if(spec.IsPagineted)
                 query = query.Skip(spec.Skip).Take(spec.Take);

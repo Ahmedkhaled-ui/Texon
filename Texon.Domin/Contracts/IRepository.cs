@@ -13,6 +13,7 @@ namespace Texon.Domin.Contracts
         Task<TEntity?> GetByIdAsync(TKey id);
         Task<TEntity?> GetAsync(IBaseSpecfications<TEntity> specfications );
 
+        Task<int> CountAsync(IBaseSpecfications<TEntity> specfications);
 
     }
 }

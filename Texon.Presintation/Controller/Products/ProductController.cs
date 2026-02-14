@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using E_Commerce.Presentation.Attrabute;
+using Microsoft.AspNetCore.Mvc;
 using Texon.Service.Abstraction.IService;
 using Texon.Shared.ProductDto;
 
@@ -18,7 +17,7 @@ namespace Texon.Presentation.Controller.Products
 
             return Ok(result);
         }
-
+        [CashRedis]
         [HttpGet("GetAllProduct")]
         public async Task<IActionResult> GetAllProducts([FromQuery] ProductQuary productQuary)
         {
@@ -34,7 +33,7 @@ namespace Texon.Presentation.Controller.Products
             {
                 return NotFound();
             }
-            return Ok(product);
+            return HandleResult(product);
         }
 
 

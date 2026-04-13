@@ -180,6 +180,9 @@ namespace Texon.Persistence.Migrations
                     b.Property<decimal?>("DiscountPrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsVisible")
                         .HasColumnType("bit");
 
@@ -201,8 +204,14 @@ namespace Texon.Persistence.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("StockQuantity")
                         .HasColumnType("int");
+
+                    b.Property<string>("colors")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -325,6 +334,100 @@ namespace Texon.Persistence.Migrations
                     b.ToTable("Users", "Security");
                 });
 
+            modelBuilder.Entity("Texon.Domin.Entities.DeliveryMethod.DeliveryMethods", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Cost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("DeliveryTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ShortName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("deliveryMethod");
+                });
+
+            modelBuilder.Entity("Texon.Domin.Entities.Order.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("DeliveryMethodID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("OrderDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<decimal>("ShippingCost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("SubTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeliveryMethodID");
+
+                    b.ToTable("order");
+                });
+
+            modelBuilder.Entity("Texon.Domin.Entities.Order.OrderItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("photo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("orderItem");
+                });
+
             modelBuilder.Entity("Texon.Domin.Entities.Products.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -443,6 +546,64 @@ namespace Texon.Persistence.Migrations
                     b.Navigation("user");
                 });
 
+            modelBuilder.Entity("Texon.Domin.Entities.Order.Order", b =>
+                {
+                    b.HasOne("Texon.Domin.Entities.DeliveryMethod.DeliveryMethods", "DeliveryMethod")
+                        .WithMany()
+                        .HasForeignKey("DeliveryMethodID")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.OwnsOne("Texon.Domin.Entities.Order.OrderAddress", "Address", b1 =>
+                        {
+                            b1.Property<Guid>("OrderId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("City")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Country")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("FirstName")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("LastName")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("PhoneNumber")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Street")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("OrderId");
+
+                            b1.ToTable("order");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
+
+                    b.Navigation("Address")
+                        .IsRequired();
+
+                    b.Navigation("DeliveryMethod");
+                });
+
+            modelBuilder.Entity("Texon.Domin.Entities.Order.OrderItem", b =>
+                {
+                    b.HasOne("Texon.Domin.Entities.Order.Order", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Texon.Domin.Entities.Products.ProductImages", b =>
                 {
                     b.HasOne("Product", "Product")
@@ -463,6 +624,11 @@ namespace Texon.Persistence.Migrations
                 {
                     b.Navigation("Address")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Texon.Domin.Entities.Order.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("Texon.Domin.Entities.Products.Category", b =>

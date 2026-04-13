@@ -9,8 +9,8 @@ namespace Texon.Service.specfications
 
         private static Expression<Func<Product, bool>> createcriteria(ProductQuary productQuary)
         {
-            return x=> (!productQuary.categoryId.HasValue || x.CategoryId == productQuary.categoryId)&&
-            (string.IsNullOrWhiteSpace(productQuary.Search)) || x.NameAr.Contains(productQuary.Search)|| x.NameEn.Contains(productQuary.Search);
+            return x => (!productQuary.categoryId.HasValue || x.CategoryId == productQuary.categoryId) &&
+            (string.IsNullOrWhiteSpace(productQuary.Search) || x.NameAr.Contains(productQuary.Search) || x.NameEn.Contains(productQuary.Search));
         }
     }
 }

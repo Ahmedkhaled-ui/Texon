@@ -10,8 +10,10 @@ namespace Texon.Service.MappingProfile
         {
             CreateMap<CustomerBasket, CustomerBasketDto>().ReverseMap();
 
-        
-            CreateMap<BasketItem, BasketItemDto>().ReverseMap();
+
+            CreateMap<BasketItemDto, BasketItem>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.ProductId)) // لو الأسماء مختلفة
+                .ReverseMap();
         }
 
     }

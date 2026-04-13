@@ -2,8 +2,8 @@
 {
     public class ProductQuary
     {
-        private const int MaxPageSize = 10;
-        private const int DefaultPageSize = 1;
+        private const int MaxPageSize = 20;
+        private const int DefaultPageSize = 10;
         public int? categoryId { get; set; }
         public string? Search { get; set; }
 

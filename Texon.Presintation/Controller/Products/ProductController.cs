@@ -1,4 +1,5 @@
 ﻿using E_Commerce.Presentation.Attrabute;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Texon.Service.Abstraction.IService;
 using Texon.Shared.ProductDto;
@@ -7,9 +8,8 @@ namespace Texon.Presentation.Controller.Products
 {
     public class ProductController(IproductService productService) : ApiBaseController
     {
-
+        [Authorize]
         [HttpPost("createProduct")]
-
         public async Task<IActionResult> CreateProduct([FromBody] ProductRequest product)
 
         {
@@ -38,6 +38,8 @@ namespace Texon.Presentation.Controller.Products
 
 
         [HttpPut("update")]
+        [Authorize]
+
         public async Task<ActionResult> updateProduct(int id, ProductRequest productRequest)
         {
             var result = await productService.UpdateProductAsync(id, productRequest);
@@ -45,6 +47,8 @@ namespace Texon.Presentation.Controller.Products
         }
 
         [HttpDelete("delete/{id}")]
+        [Authorize]
+
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var result = await productService.DeleteProductAsync(id);

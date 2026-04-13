@@ -7,5 +7,6 @@ namespace Texon.Service.Abstraction.IService
     {
         Task<Result<UserResponse>> RegisterAsync(RegisterRequest request);
         Task<Result<UserResponse>>LoginAsync(LoginRequest request);
+        Task<bool> CheckEmailAsync(string email);
     }
 }

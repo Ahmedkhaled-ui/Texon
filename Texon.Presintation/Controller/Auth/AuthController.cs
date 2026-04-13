@@ -27,5 +27,12 @@ namespace Texon.Presentation.Controller.Auth
 
 
         }
+
+
+        [HttpGet("CheckEmail")]
+        public async Task<ActionResult> CheckEmail(string email)
+        {
+            return Ok(await authService.CheckEmailAsync(email));
+        }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using Texon.Domin.Contracts;
 
 namespace Texon.Presentation.Controller.UploadFiles
@@ -8,8 +7,10 @@ namespace Texon.Presentation.Controller.UploadFiles
     public class uploadFilesController(IAttachmentService attachmentService) : ApiBaseController
     {
 
+
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadFile(IFormFile file)
+
+        public async Task<IActionResult> UploadFile( IFormFile file)
         {
             var path = await attachmentService.uploadPhoto(file, "uploads");
             if (string.IsNullOrEmpty(path))

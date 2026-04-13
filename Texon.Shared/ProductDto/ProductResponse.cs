@@ -13,7 +13,9 @@ namespace Texon.Shared.ProductDto
         public decimal? DiscountPrice { get; set; }
 
         public string CategoryName { get; set; }
-
+        public string? Size { get; set; }
+        public string? colors { get; set; }
+        public string Gender { get; set; }
         public List<string> GalleryUrls { get; set; } = new();
         public int StockQuantity { get; set; }
 

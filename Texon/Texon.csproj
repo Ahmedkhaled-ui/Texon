@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.24" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.23" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.20">
       <PrivateAssets>all</PrivateAssets>
@@ -17,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Texon.Domin\Texon.Domin.csproj" />
+    <ProjectReference Include="..\Texon.Persistence.Service\Texon.infrastructure.Service.csproj" />
     <ProjectReference Include="..\Texon.Presestence\Texon.Persistence.csproj" />
     <ProjectReference Include="..\Texon.Presintation\Texon.Presentation.csproj" />
     <ProjectReference Include="..\Texon.Service\Texon.Service.csproj" />

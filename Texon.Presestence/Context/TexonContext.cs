@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Texon.Domin.Entities.Auth;
+using Texon.Domin.Entities.DeliveryMethod;
+using Texon.Domin.Entities.Order;
 using Texon.Domin.Entities.Products;
 
 namespace Texon.Persistence.Context
@@ -32,6 +34,10 @@ namespace Texon.Persistence.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> categories { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<Order> order { get; set; }
+        public DbSet<OrderItem> orderItem { get; set; }
+        public DbSet<DeliveryMethods> deliveryMethod { get; set; }
+
 
     }
 }

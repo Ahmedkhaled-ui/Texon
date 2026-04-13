@@ -7,5 +7,6 @@ namespace Texon.Service.Abstraction.IService
 
         public Task<IEnumerable<CategoryDto>> GetAllCategoryAsync();
         public Task<CategoryDto> GetCategoryId(int categoryId);
+        public Task<bool> CreateCategory(CategoryDto category);
     }
 }

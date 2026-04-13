@@ -7,7 +7,6 @@ public class Product : BaseEntity<int>
 {
 #nullable disable
 
-    // --- الأسماء باللغتين ---
     [Required(ErrorMessage = "اسم المنتج بالعربي مطلوب")]
     [MaxLength(256)]
     public string NameAr { get; set; }
@@ -17,12 +16,10 @@ public class Product : BaseEntity<int>
     public string NameEn { get; set; }
 
 
-    // --- الوصف باللغتين ---
     public string DescriptionAr { get; set; }
     public string DescriptionEn { get; set; }
 
 
-    // --- البيانات الأساسية (لا تتغير بتغير اللغة) ---
     [MaxLength(2048)]
     [Required(ErrorMessage = "صورة المنتج مطلوبة")]
     public string PhotoUrl { get; set; }
@@ -31,6 +28,9 @@ public class Product : BaseEntity<int>
     public decimal Price { get; set; }
 
     public decimal? DiscountPrice { get; set; }
+    public string? Size { get; set; }
+    public string? colors { get; set; }
+    public string Gender { get; set; }
     public int StockQuantity { get; set; }
 
     [ForeignKey("Category")]
@@ -42,7 +42,6 @@ public class Product : BaseEntity<int>
     public bool IsVisible { get; set; } = true;
 
 
-    // --- الخواص المحسوبة (Calculated Properties) ---
     [NotMapped]
     public bool IsOnSale => DiscountPrice.HasValue && DiscountPrice < Price;
 

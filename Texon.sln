@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36811.4 d17.14
+VisualStudioVersion = 17.14.36811.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texon", "Texon\Texon.csproj", "{F489BDD0-65D2-4E46-BD19-9D538C92AD9E}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texon.Persistence", "Texon.Presestence\Texon.Persistence.csproj", "{01A10513-0BA9-4396-B478-2B86B6D22723}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texon.Presentation", "Texon.Presintation\Texon.Presentation.csproj", "{37885282-D5FF-41B3-A460-1622BEBBD6C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texon.infrastructure.Service", "Texon.Persistence.Service\Texon.infrastructure.Service.csproj", "{F6DCCFDE-B88E-40AE-B0FB-8471C4037557}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{37885282-D5FF-41B3-A460-1622BEBBD6C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37885282-D5FF-41B3-A460-1622BEBBD6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37885282-D5FF-41B3-A460-1622BEBBD6C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6DCCFDE-B88E-40AE-B0FB-8471C4037557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6DCCFDE-B88E-40AE-B0FB-8471C4037557}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6DCCFDE-B88E-40AE-B0FB-8471C4037557}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6DCCFDE-B88E-40AE-B0FB-8471C4037557}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +71,7 @@ Global
 		{C9D50731-BCCB-4BB9-99AE-E3E7CBB6D01C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{01A10513-0BA9-4396-B478-2B86B6D22723} = {EDDAC887-2E9E-44D4-A1FE-98708BCCEAFC}
 		{37885282-D5FF-41B3-A460-1622BEBBD6C5} = {EDDAC887-2E9E-44D4-A1FE-98708BCCEAFC}
+		{F6DCCFDE-B88E-40AE-B0FB-8471C4037557} = {EDDAC887-2E9E-44D4-A1FE-98708BCCEAFC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CB6E1D0E-0FEB-4528-9A91-F1F4ADAA8C90}

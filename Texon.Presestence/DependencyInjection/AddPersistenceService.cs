@@ -56,7 +56,7 @@ namespace Texon.Persistence.DependencyInjection
             }).AddRoles<IdentityRole>().AddEntityFrameworkStores<TexonContext>();
 
             #endregion
-            
+         
             return services;
         }
     }

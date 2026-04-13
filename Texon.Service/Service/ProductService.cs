@@ -103,6 +103,9 @@ namespace Texon.Service.Service
             var result = await unitofWork.GetRepository<Product , int>().GetAsync(spec);
             if (result == null)
                 return false;
+            var resultCategory = await unitofWork.GetRepository<Category, int>().GetByIdAsync(productreq.CategoryId);
+            if (resultCategory == null)
+                return false;
 
             mapper.Map(productreq, result);
             result.PhotoUrl = productreq.PhotoUrl;
